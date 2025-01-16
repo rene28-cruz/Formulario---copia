@@ -1,0 +1,59 @@
+<div class="container mx-auto mt-6 p-4 bg-white rounded shadow-lg">
+    <!-- Encabezado -->
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="text-2xl font-bold text-gray-700">Gestión de Usuarios</h2>
+  
+      <!-- Barra de búsqueda -->
+      <div class="relative w-64">
+        <input
+          type="text"
+          class="form-control w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Buscar usuario..."
+          [(ngModel)]="searchTerm"
+          (keyup)="searchItems()"
+          aria-label="Buscar usuario"
+        />
+        <i class="absolute top-2.5 right-3 text-gray-400 fa fa-search"></i>
+      </div>
+    </div>
+  
+    <!-- Estados de carga y error -->
+    <div *ngIf="loading" class="p-4 bg-blue-100 text-blue-700 rounded-lg flex items-center">
+      <i class="fa fa-spinner fa-spin mr-2"></i>
+      <span>Cargando usuarios...</span>
+    </div>
+  
+    <div *ngIf="error" class="p-4 bg-red-100 text-red-700 rounded-lg flex items-center">
+      <i class="fa fa-exclamation-circle mr-2"></i>
+      <span>{{ error }}</span>
+    </div>
+  
+    <!-- Tabla de usuarios -->
+    <div class="overflow-x-auto mt-4" *ngIf="!loading && !error && filteredUsuarios.length > 0">
+      <table class="table-auto w-full text-left border-collapse">
+        <thead>
+          <tr class="bg-gray-100 border-b">
+            <th class="px-4 py-2 text-gray-600 font-medium">ID</th>
+            <th class="px-4 py-2 text-gray-600 font-medium">Correo</th>
+            <th class="px-4 py-2 text-gray-600 font-medium">Fecha Creación</th>
+            <th class="px-4 py-2 text-gray-600 font-medium">Última Actualización</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let usuario of filteredUsuarios" class="hover:bg-gray-50 border-b">
+            <td class="px-4 py-2">{{ usuario.id }}</td>
+            <td class="px-4 py-2">{{ usuario.correo }}</td>
+            <td class="px-4 py-2">{{ usuario.created_at | date: 'short' }}</td>
+            <td class="px-4 py-2">{{ usuario.updated_at | date: 'short' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Mensaje cuando no hay usuarios -->
+    <div *ngIf="!loading && !error && filteredUsuarios.length === 0" class="p-4 bg-yellow-100 text-yellow-700 rounded-lg flex items-center">
+      <i class="fa fa-info-circle mr-2"></i>
+      <span>No se encontraron usuarios.</span>
+    </div>
+  </div>
+  

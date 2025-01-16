@@ -1,0 +1,62 @@
+<main class="h-screen flex items-center justify-center bg-gradient-to-r from-teal-500 to-cyan-600">
+  <!-- Toast message -->
+  <app-toast *ngIf="mensaje" [mensaje]="mensaje" [tipo]="tipo"></app-toast>
+  
+  <div class="bg-no-repeat bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1586228541224-3fc6365e9cb8?crop=entropy&cs=tinysrgb&fit=max&ixid=MXwyMDg4OXwwfDF8c2VhY3JlfHx8Y29tcGxldGV8ZW58MHx8fHwxNjg4OTM1MjU4&ixlib=rb-1.2.1&q=80');">
+    <div class="absolute bg-gradient-to-b from-gray-900 to-transparent opacity-60 inset-0 z-0"></div>
+    
+    <div class="min-h-screen sm:flex sm:flex-row mx-0 justify-center">
+      <div class="flex-col flex self-center p-10 sm:max-w-5xl xl:max-w-2xl z-10">
+      </div>
+
+      <div class="flex justify-center self-center z-10">
+        <!-- Contenedor con altura ajustada -->
+        <div class="p-12 bg-white mx-auto rounded-3xl w-full max-w-md shadow-xl flex flex-col justify-between min-h-[500px] relative">
+        
+          <div class="mb-4">
+            <h3 class="font-semibold text-2xl text-gray-800">Login</h3>
+            <p class="text-gray-500">Por favor ingrese sus credenciales</p>
+          </div>
+
+          <div class="space-y-5 flex-1">
+            <!-- Email input -->
+            <div class="space-y-2">
+              <label class="text-sm font-medium text-gray-700 tracking-wide">Correo</label>
+              <input [(ngModel)]="loginData.email" name="email" class="w-full text-base px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500" type="email" placeholder="email@gmail.com" required>
+            </div>
+
+            <!-- Password input -->
+            <div class="space-y-2">
+              <label class="mb-5 text-sm font-medium text-gray-700 tracking-wide">Contraseña</label>
+              <input [(ngModel)]="loginData.password" name="password" class="w-full text-base px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500" type="password" placeholder="Ingresa la contraseña" required>
+            </div>
+
+            <!-- Remember me and forgot password -->
+            <div class="flex items-center justify-between mt-4">
+              <div class="flex items-center">
+                <input id="remember_me" name="remember_me" type="checkbox" class="h-4 w-4 bg-teal-500 focus:ring-teal-400 border-gray-300 rounded">
+                <label for="remember_me" class="ml-2 block text-sm text-gray-800">Recuerdame</label>
+              </div>
+              <div class="text-sm">
+                <a href="#" class="text-teal-400 hover:text-teal-500">¿Te olvidaste la contraseña?</a>
+              </div>
+            </div>
+
+            <!-- Sign in button -->
+            <div class="mt-6">
+              <button (click)="onSubmit()" type="button" class="w-full flex justify-center bg-teal-500 hover:bg-teal-600 text-white p-3 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500">
+                Iniciar Sesión
+              </button>
+            </div>
+          </div>   
+
+          <!-- Error message  -->
+          <div *ngIf="errorMessage" class="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-red-100 text-red-700 p-3 text-sm rounded-lg border border-red-400 shadow-md w-11/12 sm:w-9/12">
+            {{ errorMessage }}
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

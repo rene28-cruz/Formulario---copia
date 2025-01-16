@@ -1,0 +1,30 @@
+<div class="container mx-auto p-6">
+    <h2 class="text-2xl mb-4">Lista de Productos</h2>
+    <table class="min-w-full bg-white rounded-lg overflow-hidden shadow-md">
+      <thead class="bg-teal-300 text-white">
+        <tr>
+          <th class="py-3 px-4 text-center">Código</th>
+          <th class="py-3 px-4 text-center">Nombre</th>
+          <th class="py-3 px-4 text-center">Descripción</th>
+          <th class="py-3 px-4 text-center">Marca</th>
+          <th class="py-3 px-4 text-center">Foto</th>
+          <th class="py-3 px-4 text-center">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let producto of productos">
+          <td class="py-3 px-4 text-center">{{ producto.codigo_producto }}</td>
+          <td class="py-3 px-4 text-center">{{ producto.nombre }}</td>
+          <td class="py-3 px-4 text-center">{{ producto.descripcion }}</td>
+          <td class="py-3 px-4 text-center">{{ producto.marca }}</td>
+          <td class="py-3 px-4 text-center">
+            <img [src]="'http://localhost:8000/imagenes/' + producto.foto_producto" alt="{{ producto.nombre }}" class="w-32 h-32 object-cover rounded-lg mx-auto shadow-lg border-4 border-white" />
+          </td>
+          <td class="py-3 px-4 text-center">
+            <button (click)="deleteProducto(producto.codigo_producto)" class="bg-red-500 text-white px-4 py-2 rounded-lg">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
